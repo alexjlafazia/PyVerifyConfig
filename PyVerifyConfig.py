@@ -13,6 +13,8 @@ start_timeall = datetime.now()
 
 def AddVerifyConfig():
 
+    usr = input("Enter Username: ")
+
     PassWD = getpass.getpass()
 
     ipsL2 = [line.rstrip("\n") for line in open("iplistL2.txt")]
@@ -36,18 +38,18 @@ def AddVerifyConfig():
             prompt = net_connect.find_prompt()
 
             if 'tagged' in taggedIoT:
-                IoT = ("You are good to go on vlan 707")
+                IoT = ("Vlan 707 - Confirmed")
             else:
                 dhcpPool = ["vlan 707", taggedStaff]
                 net_connect.send_config_set(dhcpPool)
-                IoT = ("No interfaces on vlan 707")
+                IoT = ("Vlan 707 - Updated")
 
             if 'tagged' in taggedBYOD:
-                BYOD = ("You are good to go on vlan 708")
+                BYOD = ("Vlan 708 - Confirmed")
             else:
                 dhcpPool = ["vlan 708", taggedStaff]
                 net_connect.send_config_set(dhcpPool)
-                BYOD = ("No interfaces on vlan 708")
+                BYOD = ("Vlan 708 - Updated")
 
             net_connect.save_config()
             net_connect.disconnect()
